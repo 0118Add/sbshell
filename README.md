@@ -47,8 +47,6 @@ https://gh-proxy.com/https://raw.githubusercontent.com/0118Add/sbshell/refs/head
 ## Youtube视频教程：
 https://youtu.be/aoSHzRitvC8
 
-## 电报交流群：
-https://t.me/qichiyuchat
 
 ## 其他问题：
 
