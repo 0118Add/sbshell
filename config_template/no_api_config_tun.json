@@ -1,8 +1,23 @@
 {
   "log":{
-    "disabled":false,
-    "level":"info",
-    "timestamp":true
+   "disabled":false,
+   "level":"info",
+   "timestamp":true
+ },
+  "experimental":{
+   "clash_api":{
+    "external_controller":"0.0.0.0:9095",
+    "external_ui":"/etc/sing-box/ui",
+    "secret":"",
+    "external_ui_download_url":"https://gaus.dpdns.org/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+    "external_ui_download_detour":"🎯全球直连",
+    "default_mode":"rule"
+  },
+   "cache_file":{
+    "enabled":true,
+    "path":"/etc/sing-box/cache.db",
+    "store_fakeip":false
+   }
  },
   "dns":{
    "servers":[
@@ -29,8 +44,8 @@
     ],
     "mtu":9000,
     "auto_route":true,
-    "auto_redirect":false
-   },
+    "auto_redirect":true
+  },
    {
     "tag":"mixed-in",
     "type":"mixed",
@@ -52,9 +67,9 @@
    {"tag":"🍎Apple","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🌐Cloudflare","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🎬️Bilibili","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
-   {"tag":"🤢WeChat","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
+   {"tag":"🤢WeChat","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🏴‍☠️Proxy","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
-   {"tag":"🐠兜底策略","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
+   {"tag":"🐟漏网之鱼","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🚀节点选择","type":"selector","outbounds":["{all}"]},
    {"tag":"🔯Oracle自动","type":"urltest","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇺🇸|US|us|美国|美|United States|🇯🇵|JP|jp|日本|日|Japan"]}],"url":"http://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
    {"tag":"🇺🇸美国自动","type":"urltest","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}],"url":"http://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
@@ -69,7 +84,7 @@
   ],
   "route":{
    "auto_detect_interface":true,
-   "final":"🐠兜底策略",
+   "final":"🐟漏网之鱼",
    "rules":[
     {"action":"sniff"},
     {"protocol":"dns","action":"hijack-dns"},
@@ -95,7 +110,7 @@
     {"rule_set":"geosite-proxy","outbound":"🏴‍☠️Proxy"},
     {"rule_set":"geosite-geolocation-!cn","outbound":"🔯Oracle自动"},
     {"rule_set":["geoip-cn","geosite-cn"],"outbound":"🎯全球直连"}
-   ],   
+   ],
    "rule_set":[
     {"tag":"geosite-ads","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs","download_detour":"🎯全球直连","update_interval":"48h"},
     {"tag":"geosite-adblock","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Sing-box/main/adblock_reject.srs","download_detour":"🎯全球直连","update_interval":"48h"},
