@@ -21,18 +21,18 @@
  },
   "dns":{
    "servers":[
-    {"tag":"dns_direct","address":"223.5.5.5","address_strategy":"prefer_ipv4","strategy":"prefer_ipv4","detour":"🎯全球直连"},
-    {"tag":"dns_proxy","address":"tls://8.8.8.8","address_strategy":"prefer_ipv4","strategy":"prefer_ipv4","detour":"🎈自动选择"}
+    {"tag":"dns_direct","address":"223.5.5.5","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🎯全球直连"},
+    {"tag":"dns_proxy","address":"tls://8.8.8.8","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🚀节点选择"}
    ],
    "rules":[
-    {"outbound":"any","server":"dns_direct","disable_cache":true},
-    {"clash_mode":"Direct","server":"dns_direct"},
-    {"clash_mode":"Global","server":"dns_proxy"},
-    {"rule_set":"geosite-cn","action":"route","server":"dns_direct"},
-    {"rule_set":"geosite-geolocation-!cn","server":"dns_proxy"}
+    {"action":"route","outbound":"any","server":"dns_direct","disable_cache":true},
+    {"action":"route","clash_mode":"Direct","server":"dns_direct"},
+    {"action":"route","clash_mode":"Global","server":"dns_proxy"},
+    {"action":"route","rule_set":"geosite-cn","server":"dns_direct"},
+    {"action":"route","rule_set":"geosite-geolocation-!cn","server":"dns_proxy"}
    ],
    "final":"dns_proxy",
-   "strategy":"prefer_ipv4"
+   "strategy":"prefer_ipv6"
  },
   "inbounds":[
    {
@@ -70,7 +70,7 @@
    {"tag":"🤢WeChat","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🏴‍☠️Proxy","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🐟漏网之鱼","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
-   {"tag":"🚀节点选择","type":"selector","outbounds":["{all}"]},
+   {"tag":"🚀节点选择","type":"selector","outbounds":["🎯全球直连","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🔯Oracle自动","type":"urltest","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇺🇸|US|us|美国|美|United States|🇯🇵|JP|jp|日本|日|Japan"]}],"url":"http://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
    {"tag":"🇺🇸美国自动","type":"urltest","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}],"url":"http://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
    {"tag":"🇯🇵日本自动","type":"urltest","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}],"url":"http://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
