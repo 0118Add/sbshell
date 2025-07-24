@@ -32,6 +32,12 @@ function check_config() {
     read -rp "按回车键返回二级菜单..."
 }
 
+function delaytest() {
+    echo -e "${YELLOW}正在测试网络延迟...${NC}"
+    bash /etc/sing-box/scripts/delaytest.sh
+    read -rp "按回车键返回二级菜单..."
+}
+
 function setup_singbox_permissions() {
     echo -e "${YELLOW}正在设置 sing-box 权限与服务...${NC}"
 
@@ -103,13 +109,15 @@ function setup_singbox_permissions() {
     read -rp "按回车键返回二级菜单..."
 }
 
+
 function show_submenu() {
     echo -e "${CYAN}=========== 二级菜单选项 ===========${NC}"
     echo -e "${MAGENTA}1. 查看防火墙规则${NC}"
     echo -e "${MAGENTA}2. 显示日志${NC}"
     echo -e "${MAGENTA}3. 实时日志${NC}"
     echo -e "${MAGENTA}4. 检查配置文件${NC}"
-    echo -e "${MAGENTA}5. 设置 sing-box 权限与服务（执行前查阅wiki）${NC}"
+    echo -e "${MAGENTA}5. 外网真实延迟测试${NC}"
+    echo -e "${MAGENTA}6. 设置 sing-box 权限与服务（执行前查阅wiki）${NC}"
     echo -e "${MAGENTA}0. 返回主菜单${NC}"
     echo -e "${CYAN}===================================${NC}"
 }
@@ -122,7 +130,8 @@ function handle_submenu_choice() {
             2) view_logs ;;
             3) live_logs ;;
             4) check_config ;;
-            5) setup_singbox_permissions ;;
+            5) delaytest ;;
+            6) setup_singbox_permissions ;;
             0) return 0 ;;
             *) echo -e "${RED}无效的选择${NC}" ;;
         esac
