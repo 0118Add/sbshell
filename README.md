@@ -39,6 +39,13 @@ bash <(curl -sL https://gh-proxy.com/https://raw.githubusercontent.com/qljsyph/D
 
 ## 适配配置文件：
 
+### 发行版1.12:
+fakeiptrpoxy:
+https://raw.githubusercontent.com/qljsyph/sbshell/refs/heads/main/config_template/config_fakeiptrpoxy12.json
+
+fakeiptun:
+https://raw.githubusercontent.com/qljsyph/sbshell/refs/heads/main/config_template/config_fakeiptun12.json
+
 ### 发行版1.11：  
 tproxy：  
 https://gh-proxy.com/https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_tproxy.json  
@@ -49,5 +56,6 @@ https://gh-proxy.com/https://raw.githubusercontent.com/0118Add/sbshell/refs/head
 ## 其他问题：
 
 **请查看[wiki](https://github.com/qljsyph/sbshell/wiki)**  
+**网络优化功能不懂的不要使用会影响游戏性**
 
 

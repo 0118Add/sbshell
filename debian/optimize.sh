@@ -65,10 +65,6 @@ net.ipv4.ip_forward = 1
 net.ipv4.conf.all.rp_filter = 1
 net.ipv6.conf.all.forwarding = 1
 
-# ====== 安全加固 ======
-net.ipv4.icmp_echo_ignore_all = 1
-net.ipv4.conf.all.accept_redirects = 0
-net.ipv4.conf.default.send_redirects = 0
 EOF
 
 # 应用内核参数
