@@ -1,18 +1,35 @@
 {
   "log":{
-    "disabled":false,
-    "level":"info",
-    "timestamp":true
+   "disabled":false,
+   "level":"info",
+   "timestamp":true
+ },
+  "experimental":{
+   "clash_api":{
+    "external_controller":"0.0.0.0:9095",
+    "external_ui":"/etc/sing-box/ui",
+    "secret":"",
+    "external_ui_download_url":"https://gaus.dpdns.org/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+    "external_ui_download_detour":"🎯全球直连",
+    "default_mode":"rule"
+  },
+   "cache_file":{
+    "enabled":true,
+    "path":"/etc/sing-box/cache.db",
+    "store_fakeip":false
+   }
  },
   "dns":{
    "servers":[
     {"tag":"dns_direct","address":"223.5.5.5","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🎯全球直连"},
-    {"tag":"dns_proxy","address":"tls://8.8.8.8","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🎈自动选择"}
+    {"tag":"dns_proxy","address":"tls://8.8.8.8","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🚀节点选择"}
    ],
    "rules":[
-    {"outbound":"any","server":"dns_direct","disable_cache":true},
-    {"rule_set":"geosite-cn","action":"route","server":"dns_direct"},
-    {"rule_set":"geosite-geolocation-!cn","server":"dns_proxy"}
+    {"action":"route","outbound":"any","server":"dns_direct","disable_cache":true},
+    {"action":"route","clash_mode":"Direct","server":"dns_direct"},
+    {"action":"route","clash_mode":"Global","server":"dns_proxy"},
+    {"action":"route","rule_set":"geosite-cn","server":"dns_direct"},
+    {"action":"route","rule_set":"geosite-geolocation-!cn","server":"dns_proxy"}
    ],
    "final":"dns_proxy",
    "strategy":"prefer_ipv6"
@@ -27,8 +44,8 @@
     ],
     "mtu":9000,
     "auto_route":true,
-    "auto_redirect":false
-   },
+    "auto_redirect":true
+  },
    {
     "tag":"mixed-in",
     "type":"mixed",
@@ -37,7 +54,7 @@
    }
   ],
   "outbounds":[
-   {"tag":"🅾️OpenAI","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
+   {"tag":"🧠OpenAI","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"📹YouTube","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🎵TikTok","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
    {"tag":"🍥Google","type":"selector","outbounds":["🚀节点选择","🔯Oracle自动","🇺🇸美国自动","🇯🇵日本自动","🇹🇼台湾自动","🇸🇬新加坡自动","🇭🇰香港自动","🎈自动选择"]},
@@ -74,7 +91,7 @@
     {"domain":["clash.razord.top","yacd.metacubex.one","yacd.haishan.me","d.metacubex.one"],"outbound":"🎯全球直连"},
     {"rule_set":"geosite-private","outbound":"🎯全球直连"},
     {"rule_set":["geosite-ads","geosite-adblock","geosite-anti"],"outbound":"🛑全球拦截"},
-    {"rule_set":"geosite-openai","outbound":"🅾️OpenAI"},
+    {"rule_set":"geosite-openai","outbound":"🧠OpenAI"},
     {"rule_set":"geosite-youtube","outbound":"📹YouTube"},
     {"rule_set":"geosite-tiktok","outbound":"🎵TikTok"},
     {"rule_set":["geosite-google","geoip-google"],"outbound":"🍥Google"},
