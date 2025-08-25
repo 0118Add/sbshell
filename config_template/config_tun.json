@@ -29,7 +29,6 @@
     {"action":"route","clash_mode":"Direct","server":"dns_direct"},
     {"action":"route","clash_mode":"Global","server":"dns_proxy"},
     {"action":"route","rule_set":"geosite-cn","server":"dns_direct"},
-    {"action":"route","rule_set":"geosite-geolocation-!cn","server":"dns_proxy"}
    ],
    "final":"dns_proxy",
    "strategy":"prefer_ipv6"
@@ -127,7 +126,6 @@
     {"tag":"geosite-proxy","type":"remote","format":"source","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/adwzlad/AAcustom/main/singbox/geosite-proxy.json","download_detour":"🎯全球直连","update_interval":"1h"},
     {"tag":"geosite-cn","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs","download_detour":"🎯全球直连","update_interval":"24h"},
     {"tag":"geosite-private","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs","download_detour":"🎯全球直连","update_interval":"24h"},
-
     {"tag":"geoip-google","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs","download_detour":"🎯全球直连","update_interval":"24h"},
     {"tag":"geoip-netflix","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs","download_detour":"🎯全球直连","update_interval":"24h"},
     {"tag":"geoip-telegram","type":"remote","format":"binary","url":"https://gaus.dpdns.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs","download_detour":"🎯全球直连","update_interval":"24h"},
