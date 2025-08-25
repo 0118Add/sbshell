@@ -41,13 +41,13 @@ bash <(curl -sL https://gh-proxy.com/https://raw.githubusercontent.com/qljsyph/D
 
 ### 发行版1.12:
 fakeiptrpoxy:
-https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/main/config_template/config_fakeiptrpoxy12.json
+https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_fakeiptrpoxy12.json
 
 fakeiptun:
-https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/main/config_template/config_fakeiptun12.json
+https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_fakeiptun12.json
 
 tproxy:
-https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/main/config_template/config_trpoxy12.json
+https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_trpoxy12.json
 
 ### 发行版1.11：  
 tproxy：  
