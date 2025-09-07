@@ -22,7 +22,7 @@
   "dns":{
    "servers":[
     {"tag":"dns_direct","address":"223.5.5.5","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🎯全球直连"},
-    {"tag":"dns_proxy","address":"tls://8.8.8.8","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🚀节点选择"}
+    {"tag":"dns_proxy","address":"8.8.8.8","address_strategy":"prefer_ipv6","strategy":"prefer_ipv6","detour":"🚀节点选择"}
    ],
    "rules":[
     {"action":"route","outbound":"any","server":"dns_direct","disable_cache":true},
