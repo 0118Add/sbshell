@@ -1,23 +1,47 @@
 {
   "dns": {
     "servers": [
-      {"tag": "block", "type": "hosts", "path": [], "predefined": {}},
-      {"tag": "local", "type": "udp", "server": "180.168.255.18"},
-      {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
-      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "🚀 默认代理"},
-      {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
+      {
+        "tag": "dns_proxy",
+        "type": "udp", "server": "1.1.1.1", "server_port": 53,
+		"routing_mark": 7894,
+		"detour": "♻️ 自动选择",
+        "domain_resolver": "dns_resolver"
+      },
+      {
+        "tag": "dns_direct",
+        "type": "udp", "server": "223.5.5.5", "server_port": 53,
+		"routing_mark": 7894,
+        "domain_resolver": "dns_resolver"
+      },
+      {
+        "tag": "dns_fakeip",
+        "type": "fakeip",
+        "inet4_range": "28.0.0.0/8",
+        "inet6_range": "fc00::/16"
+      },
+      {
+        "tag": "dns_resolver",
+        "type": "udp", "server": "223.5.5.5", "server_port": 53,
+		"routing_mark": 7894
+      }
     ],
     "rules": [
-      {"clash_mode": "direct", "server": "local"},
-      {"clash_mode": "global", "server": "fakeip"},
-      {"domain_suffix": ["services.googleapis.cn", "googleapis.cn", "xn--ngstr-lra8j.com"], "server": "foreign"},
-      {"rule_set": ["geosite-cn", "geosite-steamcn", "geosite-apple"], "server": "local"},
-      {"query_type": ["A", "AAAA"], "server": "fakeip", "rewrite_ttl": 1}
+      { "clash_mode": "Direct", "server": "dns_direct", "strategy": "prefer_ipv4" },
+      { "domain_suffix": ["services.googleapis.cn"], "server": "dns_fakeip", "strategy": "prefer_ipv4", "rewrite_ttl": 1 },
+      { "domain": ["time-ios.apple.com", "time1.cloud.tencent.com", "music.163.com", "musicapi.taihe.com", "music.taihe.com", "songsearch.kugou.com", "trackercdn.kugou.com", "api-jooxtt.sanook.com", "api.joox.com", "joox.com", "y.qq.com", "streamoc.music.tc.qq.com", "mobileoc.music.tc.qq.com", "isure.stream.qqmusic.qq.com", "dl.stream.qqmusic.qq.com", "aqqmusic.tc.qq.com", "amobile.music.tc.qq.com", "music.migu.cn", "localhost.ptlogin2.qq.com", "localhost.sec.qq.com", "xnotify.xboxlive.com", "proxy.golang.org", "heartbeat.belkin.com", "mesu.apple.com", "swscan.apple.com", "swquery.apple.com", "swdownload.apple.com", "swcdn.apple.com", "swdist.apple.com", "lens.l.google.com", "na.b.g-tun.com", "ff.dorado.sdo.com", "shark007.net", "adguardteam.github.io", "adrules.top", "anti-ad.net", "local.adguard.org", "static.adtidy.org", "ps.res.netease.com"], "server": "dns_direct" },
+      { "domain_suffix": ["*", "lan", "localdomain", "example", "invalid", "localhost", "test", "local", "home.arpa", "direct", "time.edu.cn", "ntp.org.cn", "pool.ntp.org", "music.163.com", "126.net", "kuwo.cn", "y.qq.com", "xiami.com", "music.migu.cn", "msftconnecttest.com", "msftncsi.com", "kk-rays.com", "steamcontent.com", "srv.nintendo.net", "n.n.srv.nintendo.net", "cdn.nintendo.net", "battle.net", "battlenet.com.cn", "wotgame.cn", "wggames.cn", "wowsgame.cn", "wargaming.net", "linksys.com", "linksyssmartwifi.com", "router.asus.com", "square-enix.com", "finalfantasyxiv.com", "ffxiv.com", "ff14.sdo.com", "mcdn.bilivideo.cn", "media.dssott.com", "market.xiaomi.com", "cmbchina.com", "cmbimg.com", "sandai.net", "n0808.com", "3gppnetwork.org", "uu.163.com", "pub.3gppnetwork.org", "oray.com", "orayimg.com", "gcloudcs.com", "gcloudsdk.com", "dynv6.net"], "server": "dns_direct" },
+      { "domain_regex": ["time\\..*\\.com", "time\\..*\\.gov", "time\\..*\\.edu\\.cn", "time\\..*\\.apple\\.com", "time1\\..*\\.com", "time2\\..*\\.com", "time3\\..*\\.com", "time4\\..*\\.com", "time5\\..*\\.com", "time6\\..*\\.com", "time7\\..*\\.com", "ntp\\..*\\.com", "ntp1\\..*\\.com", "ntp2\\..*\\.com", "ntp3\\..*\\.com", "ntp4\\..*\\.com", "ntp5\\..*\\.com", "ntp6\\..*\\.com", "ntp7\\..*\\.com", "localhost\\..*\\.weixin\\.qq\\.com", "xbox\\..*\\.*\\.microsoft\\.com", ".*\\.*\\.xboxlive\\.com", "xbox\\..*\\.microsoft\\.com", ".+\\.stun\\..*\\.*", ".+\\.stun\\..*\\.*\\.*", ".+\\.stun\\..*\\.*\\.*\\.*", ".+\\.stun\\..*\\.*\\.*\\.*\\.*"], "server": "dns_direct" },
+	  { "clash_mode": "Global", "query_type": ["A", "AAAA"], "server": "dns_fakeip", "strategy": "prefer_ipv4", "rewrite_ttl": 1 },
+      { "rule_set": ["cn"], "server": "dns_direct" },
+	  { "query_type": ["A", "AAAA"], "server": "dns_fakeip", "strategy": "prefer_ipv4", "rewrite_ttl": 1 }
     ],
-    "final": "foreign",
-    "strategy": "ipv4_only",
+    "final": "dns_proxy",
+	"strategy": "prefer_ipv4",
     "independent_cache": true,
+	
     "reverse_mapping": true
+  }
   },
   "outbounds": [
     {"tag": "🚀 默认代理", "type": "selector", "outbounds": ["♻️ 自动选择", "🇭🇰 香港", "🇹🇼 台湾", "🇸🇬 狮城", "🇯🇵 日本", "🇰🇷 韩国", "🇺🇸 美国", "🛣️ Traffic", "🖕 手动选择", "🎯 全球直连"]},
