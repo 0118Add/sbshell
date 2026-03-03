@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "block", "type": "hosts", "path": [], "predefined": {}},
-      {"tag": "local", "type": "udp", "server": "180.168.255.18"},
+      {"tag": "local", "type": "udp", "server": "223.5.5.5"},
       {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
       {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "🚀 默认代理"},
       {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
@@ -140,7 +140,7 @@
   ],
   "experimental": {
     "cache_file": {
-      "enabled": true,
+      "enabled": false,
       "path": "/etc/sing-box/cache.db",
       "store_fakeip": true
     },
