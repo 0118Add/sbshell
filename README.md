@@ -49,8 +49,8 @@ https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_templ
 tproxy:
 https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_trpoxy12.json
 
-### 发行版1.13：  
-tun1.13：  
+### 发行版1.1x：  
+tun1.1x：  
 https://gh-proxy.com/https://raw.githubusercontent.com/0118Add/sbshell/refs/heads/master/config_template/config_tun1.13.json  
 
 tun：  
