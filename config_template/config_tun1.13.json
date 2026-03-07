@@ -2,9 +2,9 @@
   "dns": {
     "servers": [
       {"tag": "block", "type": "hosts", "path": [], "predefined": {}},
-      {"tag": "local", "type": "udp", "server": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"]},
-      {"tag": "public", "type": "https", "server": ["dns.alidns.com", "dns_dnspod.com"], "domain_resolver": "local"},
-      {"tag": "foreign", "type": "https", "server": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"], "detour": "🚀 默认代理"},
+      {"tag": "local", "type": "udp", "server": "114.114.114.114"},
+      {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
+      {"tag": "foreign", "type": "https", "server": "8.8.4.4", "detour": "🚀 默认代理"},
       {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
     ],
     "rules": [
